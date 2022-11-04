@@ -2,6 +2,7 @@ package com.harrysoft.androidbluetoothserial.demoapp;
 
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.EditText;
@@ -10,11 +11,17 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProviders;
 
+import com.harrysoft.androidbluetoothserial.demoapp.JoystickView.JoystickDataModel;
+import com.harrysoft.androidbluetoothserial.demoapp.JoystickView.JoystickView;
+
+import java.util.logging.Logger;
+
 public class CommunicateActivity extends AppCompatActivity {
 
     private TextView connectionText, messagesView;
     private EditText messageBox;
     private Button sendButton, connectButton;
+    private JoystickView joystick;
 
     private CommunicateViewModel viewModel;
 
@@ -62,6 +69,16 @@ public class CommunicateActivity extends AppCompatActivity {
 
         // Setup the send button click action
         sendButton.setOnClickListener(v -> viewModel.sendMessage(messageBox.getText().toString()));
+
+        joystick = (JoystickView) findViewById(R.id.joystick);
+
+        joystick.setOnJoystickMoveListener(new JoystickView.OnJoystickMoveListener() {
+            @Override
+            public void onValueChanged(int angle, int power, int direction) {
+                JoystickDataModel joystickDataModel = new JoystickDataModel(angle, power);
+                viewModel.sendMessage(joystickDataModel.toString());
+            }
+        }, 1000);
     }
 
     // Called when the ViewModel updates us of our connectivity status
