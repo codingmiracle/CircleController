@@ -78,7 +78,7 @@ public class CommunicateActivity extends AppCompatActivity {
                 JoystickDataModel joystickDataModel = new JoystickDataModel(angle, power);
                 viewModel.sendMessage(joystickDataModel.toString());
             }
-        }, 1000);
+        }, JoystickView.DEFAULT_LOOP_INTERVAL);
     }
 
     // Called when the ViewModel updates us of our connectivity status
