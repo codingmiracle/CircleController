@@ -28,15 +28,6 @@
 
     </LinearLayout>
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/messages"
-        android:textSize="@dimen/title"
-        android:layout_marginBottom="@dimen/margin"
-        android:layout_marginLeft="@dimen/margin"
-        android:layout_marginRight="@dimen/margin" />
-
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -80,7 +71,7 @@
             android:id="@+id/communicate_send"
             android:text="@string/send"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="match_parent" />
 
     </LinearLayout>
 
