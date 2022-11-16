@@ -29,6 +29,7 @@ public class JoystickView extends View implements Runnable {
         private double centerX = 0; // Center view x position
         private double centerY = 0; // Center view y position
         private Paint mainCircle;
+        private Paint mainCircleStroke;
         private Paint secondaryCircle;
         private Paint button;
         private Paint horizontalLine;
@@ -55,7 +56,11 @@ public class JoystickView extends View implements Runnable {
         protected void initJoystickView() {
             mainCircle = new Paint(Paint.ANTI_ALIAS_FLAG);
             mainCircle.setColor(Color.WHITE);
-            mainCircle.setStyle(Paint.Style.FILL_AND_STROKE);
+            mainCircle.setStyle(Paint.Style.FILL);
+
+            mainCircleStroke = new Paint(Paint.ANTI_ALIAS_FLAG);
+            mainCircleStroke.setColor(Color.BLACK);
+            mainCircleStroke.setStyle(Paint.Style.STROKE);
 
             secondaryCircle = new Paint();
             secondaryCircle.setColor(Color.GREEN);
@@ -128,6 +133,8 @@ public class JoystickView extends View implements Runnable {
             // painting the main circle
             canvas.drawCircle((int) centerX, (int) centerY, joystickRadius,
                     mainCircle);
+            canvas.drawCircle((int) centerX, (int) centerY, joystickRadius,
+                    mainCircleStroke);
             // painting the secondary circle
             canvas.drawCircle((int) centerX, (int) centerY, joystickRadius / 2,
                     secondaryCircle);

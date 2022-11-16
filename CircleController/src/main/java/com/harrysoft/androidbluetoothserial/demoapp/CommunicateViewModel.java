@@ -22,7 +22,7 @@ import io.reactivex.schedulers.Schedulers;
 public class CommunicateViewModel extends AndroidViewModel {
 
     // A CompositeDisposable that keeps track of all of our asynchronous tasks
-    private CompositeDisposable compositeDisposable = new CompositeDisposable();
+    private final CompositeDisposable compositeDisposable = new CompositeDisposable();
 
     // Our BluetoothManager!
     private BluetoothManager bluetoothManager;
@@ -32,13 +32,13 @@ public class CommunicateViewModel extends AndroidViewModel {
     private SimpleBluetoothDeviceInterface deviceInterface;
 
     // The messages feed that the activity sees
-    private MutableLiveData<String> messagesData = new MutableLiveData<>();
+    private final MutableLiveData<String> messagesData = new MutableLiveData<>();
     // The connection status that the activity sees
-    private MutableLiveData<ConnectionStatus> connectionStatusData = new MutableLiveData<>();
+    private final MutableLiveData<ConnectionStatus> connectionStatusData = new MutableLiveData<>();
     // The device name that the activity sees
-    private MutableLiveData<String> deviceNameData = new MutableLiveData<>();
+    private final MutableLiveData<String> deviceNameData = new MutableLiveData<>();
     // The message in the message box that the activity sees
-    private MutableLiveData<String> messageData = new MutableLiveData<>();
+    private final MutableLiveData<String> messageData = new MutableLiveData<>();
 
     // Our modifiable record of the conversation
     private StringBuilder messages = new StringBuilder();

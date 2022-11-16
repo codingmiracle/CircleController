@@ -1,1 +1,1 @@
-include ':demoApplication', ':androidBluetoothSerial'
+include ':CircleController', ':androidBluetoothSerial'
