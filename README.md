@@ -1,6 +1,6 @@
-# circle
+# circleController
 
-**circle is a library for the robot used in HTL St.Pölten**
+**circleController is the app for the robot used in**
 
 ![circle-logo](https://user-images.githubusercontent.com/85552617/195413761-21e80692-dd8c-4c51-a20d-ac11b8ba39e9.png)
 
