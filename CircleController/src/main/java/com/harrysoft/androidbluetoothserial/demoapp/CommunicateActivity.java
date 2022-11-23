@@ -1,5 +1,10 @@
 package com.harrysoft.androidbluetoothserial.demoapp;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
+import android.os.BatteryManager;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -22,8 +27,20 @@ public class CommunicateActivity extends AppCompatActivity {
     private EditText messageBox;
     private Button sendButton, connectButton;
     private JoystickView joystick;
+    private TextView battery;
 
     private CommunicateViewModel viewModel;
+
+    //Get Battery state
+    private BroadcastReceiver nBatInfoReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+
+            int level = intent.getIntExtra(BatteryManager.EXTRA_LEVEL,0);
+            battery.setText(String.valueOf(level)+"%");
+
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +51,9 @@ public class CommunicateActivity extends AppCompatActivity {
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
+
+        battery = (TextView) this.findViewById(R.id.communicate_messages);
+        this.registerReceiver(this.nBatInfoReceiver,new IntentFilter(Intent.ACTION_BATTERY_CHANGED));
 
         // Setup our ViewModel
         viewModel = ViewModelProviders.of(this).get(CommunicateViewModel.class);
