@@ -1,4 +1,4 @@
-package com.harrysoft.androidbluetoothserial.demoapp;
+package com.codingmiracle.circleController;
 
 import android.app.Application;
 import android.bluetooth.BluetoothDevice;
@@ -9,6 +9,7 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import com.harrysoft.androidbluetoothserial.BluetoothManager;
+import com.harrysoft.androidbluetoothserial.demoapp.R;
 
 import org.jetbrains.annotations.NotNull;
 

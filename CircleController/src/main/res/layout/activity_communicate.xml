@@ -47,7 +47,7 @@
 
     </ScrollView>
 
-    <com.harrysoft.androidbluetoothserial.demoapp.JoystickView.JoystickView
+    <com.codingmiracle.circleController.JoystickView.JoystickView
         android:id="@+id/joystick"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />

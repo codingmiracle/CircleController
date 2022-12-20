@@ -1,4 +1,4 @@
-package com.harrysoft.androidbluetoothserial.demoapp.JoystickView;
+package com.codingmiracle.circleController.JoystickView;
 
 import static java.lang.Math.PI;
 import static java.lang.Math.cos;

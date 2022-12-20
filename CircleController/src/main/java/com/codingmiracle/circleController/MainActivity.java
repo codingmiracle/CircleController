@@ -1,4 +1,4 @@
-package com.harrysoft.androidbluetoothserial.demoapp;
+package com.codingmiracle.circleController;
 
 import android.bluetooth.BluetoothDevice;
 import android.content.Intent;
@@ -15,6 +15,8 @@ import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+
+import com.harrysoft.androidbluetoothserial.demoapp.R;
 
 import org.jetbrains.annotations.NotNull;
 

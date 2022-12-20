@@ -1,4 +1,4 @@
-package com.harrysoft.androidbluetoothserial.demoapp.JoystickView;
+package com.codingmiracle.circleController.JoystickView;
 
 import android.content.Context;
 import android.graphics.Canvas;
