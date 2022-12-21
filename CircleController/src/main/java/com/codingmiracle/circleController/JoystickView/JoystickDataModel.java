@@ -50,12 +50,4 @@ public class JoystickDataModel {
                 ", r=" + r +
                 '}' + (char)0;
     }
-
-    public Integer getR() {
-        return r;
-    }
-
-    public void setR(Integer r) {
-        this.r = r;
-    }
 }

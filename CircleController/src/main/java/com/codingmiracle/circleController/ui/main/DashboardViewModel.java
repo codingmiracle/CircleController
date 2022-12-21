@@ -1,4 +1,4 @@
-package com.codingmiracle.circleController;
+package com.codingmiracle.circleController.ui.main;
 
 import android.app.Application;
 import android.text.TextUtils;
@@ -20,9 +20,8 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.schedulers.Schedulers;
 
-public class CommunicateViewModel extends AndroidViewModel {
+public class DashboardViewModel extends AndroidViewModel {
 
-    // A CompositeDisposable that keeps track of all of our asynchronous tasks
     private final CompositeDisposable compositeDisposable = new CompositeDisposable();
 
     // Our BluetoothManager!
@@ -35,7 +34,7 @@ public class CommunicateViewModel extends AndroidViewModel {
     // The messages feed that the activity sees
     private final MutableLiveData<String> messagesData = new MutableLiveData<>();
     // The connection status that the activity sees
-    private final MutableLiveData<ConnectionStatus> connectionStatusData = new MutableLiveData<>();
+    private final MutableLiveData<ConnectionStatus> connectionStatusData = new MutableLiveData<ConnectionStatus>();
     // The device name that the activity sees
     private final MutableLiveData<String> deviceNameData = new MutableLiveData<>();
     // The message in the message box that the activity sees
@@ -54,19 +53,19 @@ public class CommunicateViewModel extends AndroidViewModel {
     private boolean viewModelSetup = false;
 
     // Called by the system, this is just a constructor that matches AndroidViewModel.
-    public CommunicateViewModel(@NotNull Application application) {
+    public DashboardViewModel(@NotNull Application application) {
         super(application);
     }
 
-    // Called in the activity's onCreate(). Checks if it has been called before, and if not, sets up the data.
-    // Returns true if everything went okay, or false if there was an error and therefore the activity should finish.
+    private MutableLiveData<Integer> mIndex = new MutableLiveData<>();
+
     public boolean setupViewModel(String deviceName, String mac) {
         // Check we haven't already been called
         if (!viewModelSetup) {
             viewModelSetup = true;
 
             // Setup our BluetoothManager
-            bluetoothManager = BluetoothManager.getInstance();
+            bluetoothManager = com.harrysoft.androidbluetoothserial.BluetoothManager.getInstance();
             if (bluetoothManager == null) {
                 // Bluetooth unavailable on this device :( tell the user
                 toast(R.string.bluetooth_unavailable);
@@ -189,9 +188,13 @@ public class CommunicateViewModel extends AndroidViewModel {
     public LiveData<String> getMessage() { return messageData; }
 
     // An enum that is passed to the activity to indicate the current connection status
-    enum ConnectionStatus {
+    public enum ConnectionStatus {
         DISCONNECTED,
         CONNECTING,
         CONNECTED
+    }
+
+    public void setIndex(int index) {
+        mIndex.setValue(index);
     }
 }

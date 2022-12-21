@@ -1,40 +1,49 @@
 package com.codingmiracle.circleController;
 
 import android.os.Bundle;
+
+import com.codingmiracle.circleController.JoystickView.JoystickDataModel;
+import com.codingmiracle.circleController.JoystickView.JoystickView;
+import com.codingmiracle.circleController.ui.main.DashboardViewModel;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.Snackbar;
+import com.google.android.material.tabs.TabLayout;
+
+import androidx.lifecycle.ViewModelProviders;
+import androidx.viewpager.widget.ViewPager;
+import androidx.appcompat.app.AppCompatActivity;
+
+
 import android.text.TextUtils;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.ViewModelProviders;
 
-import com.codingmiracle.circleController.JoystickView.JoystickDataModel;
-import com.codingmiracle.circleController.JoystickView.JoystickView;
-import com.harrysoft.androidbluetoothserial.demoapp.R;
+public class DashboardActivity extends AppCompatActivity {
 
-public class CommunicateActivity extends AppCompatActivity {
 
     private TextView connectionText, messagesView;
     private EditText messageBox;
     private Button sendButton, connectButton;
     private JoystickView joystick;
 
-    private CommunicateViewModel viewModel;
+    private DashboardViewModel viewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         // Setup our activity
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_communicate);
+        setContentView(R.layout.activity_dashboard);
         // Enable the back button in the action bar if possible
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
 
         // Setup our ViewModel
-        viewModel = ViewModelProviders.of(this).get(CommunicateViewModel.class);
+        viewModel = ViewModelProviders.of(this).get(DashboardViewModel.class);
 
         // This method return false if there is an error, so if it does, we should close.
         if (!viewModel.setupViewModel(getIntent().getStringExtra("device_name"), getIntent().getStringExtra("device_mac"))) {
@@ -44,7 +53,6 @@ public class CommunicateActivity extends AppCompatActivity {
 
         // Setup our Views
         connectionText = findViewById(R.id.communicate_connection_text);
-        messagesView = findViewById(R.id.communicate_messages);
         messageBox = findViewById(R.id.communicate_message);
         sendButton = findViewById(R.id.communicate_send);
         connectButton = findViewById(R.id.communicate_connect);
@@ -80,7 +88,7 @@ public class CommunicateActivity extends AppCompatActivity {
     }
 
     // Called when the ViewModel updates us of our connectivity status
-    private void onConnectionStatus(CommunicateViewModel.ConnectionStatus connectionStatus) {
+    private void onConnectionStatus(DashboardViewModel.ConnectionStatus connectionStatus) {
         switch (connectionStatus) {
             case CONNECTED:
                 connectionText.setText(R.string.status_connected);
